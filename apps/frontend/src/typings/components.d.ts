@@ -24,6 +24,7 @@ declare module 'vue' {
     NSpace: typeof import('naive-ui')['NSpace']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchInput: typeof import('./../shared/ui/search-input/index.vue')['default']
     SvgIcon: typeof import('./../shared/ui/svg-icon/index.vue')['default']
   }
 }

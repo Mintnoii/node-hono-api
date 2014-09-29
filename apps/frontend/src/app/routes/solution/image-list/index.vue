@@ -2,7 +2,10 @@
   <div class="wh-full flex-col gap-10 p-10">
     <div class="flex-center justify-between">
       <n-h2>图片列表</n-h2>
-      <n-button type="primary" @click="createNew"> 新增图片 </n-button>
+      <n-space>
+        <search-input v-model:value="searchVal" @search="refresh" />
+        <n-button type="primary" @click="createNew"> 新增图片 </n-button>
+      </n-space>
     </div>
     <div class="list-container">
       <n-card
@@ -35,6 +38,7 @@ import { Refresh } from '@vicons/ionicons5'
 import { NThing } from 'naive-ui'
 import EditForm from '@/shared/ui/edit-form/index.vue'
 const emojis = ref<Loose>([])
+const searchVal = ref('')
 const options = [
   {
     label: '重命名',
@@ -51,9 +55,10 @@ const handleDelete = async () => {
 const model = ref<Loose>({
   name: 'test'
 })
+
 const refresh = async () => {
   // fetch('/api/emoji')
-  const [err, resp] = await EmojiApi.getEmojis()
+  const [err, resp] = await EmojiApi.getEmojis({ name: searchVal.value })
   console.log(resp, 'resp')
   emojis.value = resp?.data
 }

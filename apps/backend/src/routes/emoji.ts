@@ -6,7 +6,19 @@ const prisma = new PrismaClient()
 
 // 查询
 emoji.get('/', async (c) => {
-  const emojis = await prisma.emoji.findMany()
+  const query = c.req.query()
+  console.log(query, 'query')
+  const condition: any = {
+    where: {
+      name: {
+        contains: query.name
+      }
+    },
+    orderBy: {
+      createdAt: 'desc'
+    }
+  }
+  const emojis = await prisma.emoji.findMany(condition)
   return c.json({
     status: 200,
     msg: 'success',

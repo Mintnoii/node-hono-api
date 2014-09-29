@@ -11,6 +11,6 @@ import { JSONViewer } from '@/shared/libs'
 <route lang="yaml">
 meta:
   layout: default
-  menu: { show: true, order: 1, label: '二级页面', icon: database }
+  menu: { show: true, order: 2, label: '二级页面', icon: database }
 </route>
 <style lang="scss" scoped></style>

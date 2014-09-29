@@ -32,7 +32,6 @@
 
 <script setup lang="ts">
 import { MenuOption, NIcon } from 'naive-ui'
-import { BookOutline as BookIcon, PersonOutline as PersonIcon, WineOutline as WineIcon } from '@vicons/ionicons5'
 import { objectify, fork } from 'radash'
 const inverted = ref(false)
 const router = useRouter()
@@ -50,25 +49,35 @@ const groupRoutes = () => {
       parent.children.push(route)
     }
   })
-  const [menus] = fork(Object.values(rootMap), (item) => !item.meta.hasParent)
-  return menus.map(routeMapper)
+  let [menus] = fork(Object.values(rootMap), (item) => !item.meta.hasParent)
+  menus = menus.map(routeMapper).sort((a: any, b: any) => a.order - b.order) as any
+  menus.forEach((menu) => {
+    menu.children = menu.children?.filter((item) => !!item.path)
+  })
+  return menus as any
 }
 
 const routeMapper = (route: any) => {
   const menu = route?.meta?.menu as any
-  const children = route.children?.length ? route.children.map(routeMapper) : undefined
+  const children = route.children?.length
+    ? route.children.map(routeMapper).sort((a: any, b: any) => a.order - b.order)
+    : undefined
+
   return {
     label: menu?.label || '',
     path: route.path,
     key: route.path,
-    icon: renderIcon(BookIcon),
+    order: menu?.order,
+    type: menu?.type,
+    icon: renderIcon({ name: menu.icon, size: 24 }),
     // activeIcon: renderIcon(BookIcon),
     ...(children && { children })
   }
 }
-const renderIcon = (icon: Component) => {
-  return () => h(NIcon, null, { default: () => h(icon) })
+const renderIcon = ({ name, size }: { name: any; size: number }) => {
+  return () => h(NIcon, { name, size })
 }
+
 const menuOptions = groupRoutes()
 
 const handleMenu = (key: string, item: MenuOption) => {
