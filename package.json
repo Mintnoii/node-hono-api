@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "dev": "tsx watch src/learn.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.11.1",
+    "hono": "^4.3.2",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "@types/uuid": "^9.0.8",
+    "tsx": "^4.7.1"
+  }
+}
