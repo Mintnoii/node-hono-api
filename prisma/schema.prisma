@@ -30,6 +30,7 @@ model Post {
 }
 
 model Emoji {
-  id    Int     @id @default(autoincrement())
-  name  String?
+  id   Int     @id @default(autoincrement())
+  name String?
+  url  String? @default("")
 }
