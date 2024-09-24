@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "lib": ["ESNext"],
+    "types": ["node"],
+    "allowJs": true,
+     "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "skipLibCheck": true
+  },
+  "include": ["apps/backend/src/**.ts"],
+  "exclude": [
+    "**/dist",
+    "**/node_modules"
+  ]
+}

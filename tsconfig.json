@@ -1,12 +1,24 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Default",
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "composite": false,
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "inlineSources": false,
+    "isolatedModules": true,
+    "moduleResolution": "node",
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "preserveWatchOutput": true,
     "skipLibCheck": true,
+    "strict": false,
+    "strictNullChecks": true
   },
-  "ts-node": {
-    "esm": true
-  },
-  "include": ["src/types/*.ts", "src/*.*"]
+  "exclude": ["node_modules"],
+   "references": [
+     { "path": "./tsconfig.base.json" }
+   ]
 }
