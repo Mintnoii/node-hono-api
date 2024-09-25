@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:be": "pnpm --filter=backend run dev"
+    "dev:be": "pnpm --filter=backend run dev",
+    "migrate": "pnpm --filter=backend run migrate"
   },
   "devDependencies": {
     "@types/node": "^20.12.8",
