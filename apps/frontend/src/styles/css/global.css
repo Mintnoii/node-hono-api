@@ -1,0 +1,49 @@
+@import url('./transition.css');
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 4px;
+  overflow-x: hidden;
+}
+
+/* 大屏幕（大于1920px） */
+
+/* @media (min-width: 1921px) {
+  html {
+    font-size: 4.5px;
+  }
+} */
+
+/* 小屏幕（小于1080px） */
+
+/* @media (max-width: 1439px) {
+  html {
+    font-size: 3.5px;
+  }
+} */
+
+/* html.grayscale {
+  filter: grayscale(100%);
+} */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow: auto;
+  min-width: 1440px;
+  min-height: 100vh;
+  font-size: 14px;
+}
+
+ul {
+  list-style-type: none;
+  padding-inline-start: 0;
+}

@@ -8,9 +8,10 @@
      "target": "ESNext",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+     "allowSyntheticDefaultImports": true,
   },
-  "include": ["apps/backend/src/**.ts"],
+  "include": ["apps/*/vite.config.ts", "apps/backend/src/**.ts","apps/backend/src/**/*.ts"],
   "exclude": [
     "**/dist",
     "**/node_modules"

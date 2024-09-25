@@ -18,7 +18,6 @@
     // https://www.typescriptlang.org/tsconfig#declaration
     // https://www.typescriptlang.org/tsconfig#emitDeclarationOnly
     // https://www.typescriptlang.org/tsconfig#noEmitOnError
-    
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     // 这几项配置与 CommonJS 和 ESModule 之间的互操作性有关
