@@ -9,9 +9,9 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "skipLibCheck": true,
-     "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true,
   },
-  "include": ["apps/*/vite.config.ts", "apps/backend/src/**.ts","apps/backend/src/**/*.ts"],
+  "include": ["apps/*/*.ts", "apps/backend/src/**.ts","apps/backend/src/**/*.ts"],
   "exclude": [
     "**/dist",
     "**/node_modules"

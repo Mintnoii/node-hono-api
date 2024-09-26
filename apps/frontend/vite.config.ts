@@ -19,7 +19,7 @@ export default defineConfig(({ command, mode }) => {
       Vue(),
       vueJsx(),
       UnoCSS(),
-      Pages(),
+      Pages({ dirs: 'src/app/routes', extensions: ['vue'] }),
       Layouts({ layoutsDirs: 'src/shared/layouts', defaultLayout: 'default' }),
       AutoImport({
         dts: './src/typings/auto-imports.d.ts',

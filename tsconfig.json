@@ -14,12 +14,11 @@
     "noUnusedParameters": false,
     "preserveWatchOutput": true,
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
     "strictNullChecks": true
   },
   "exclude": ["node_modules"],
    "references": [
-    { "path": "./tsconfig.comp.json" },
     { "path": "./tsconfig.node.json" },
    ]
 }

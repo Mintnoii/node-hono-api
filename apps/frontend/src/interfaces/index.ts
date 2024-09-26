@@ -1,8 +1,2 @@
-import DemoInterfaces from './demo'
-export const AppInterfaces = (): AppInterfaces => {
-  return {
-    ...DemoInterfaces
-  }
-}
-
-export default AppInterfaces
+export * from './emoji'
+export * from './user'

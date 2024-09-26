@@ -1,18 +1,5 @@
 <template>
-  <div class="login-page wh-full flex">
-    <div class="w-25vw h-full bg-fill-1 flex-center">
-      <div class="flex-col-center">
-        <svg-icon name="logo" :width="96" :height="96" />
-        <div class="mt-24 font-700 text-36 mb-16 text-text-1">Mint-Admin</div>
-        <div class="text-text-3 text-20">🌿 薄荷管理系统</div>
-      </div>
-    </div>
-    <div class="flex-1 flex-center">
-      <n-card class="z-5 rounded-8 w-420 pb-36 shadow-sm shadow-light-700">
-        <n-h1 class="text-center">
-          <div class="text-20 font-600 flex items-baseline justify-center">欢迎登录薄荷管理系统</div>
-        </n-h1>
-        <n-form
+ <n-form
           ref="formRef"
           name="login"
           autocomplete="off"
@@ -59,15 +46,13 @@
           </div>
           <n-button block class="mt-34" type="primary" @click="onFinish"> 登录 </n-button>
         </n-form>
-      </n-card>
-    </div>
-  </div>
 </template>
 
 <script lang="ts" setup>
 import { FormInst, FormItemRule } from 'naive-ui'
 // import { getUserInfo, useUser } from '@/entities/user'
 // import { isValidPhoneNumber } from '@/shared/lib'
+
 
 const formRef = ref<FormInst | null>(null)
 
