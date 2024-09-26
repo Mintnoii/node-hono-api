@@ -11,7 +11,7 @@
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
   },
-  "include": ["apps/*/*.ts", "apps/backend/src/**.ts","apps/backend/src/**/*.ts"],
+  "include": ["apps/backend/*.ts", "apps/backend/src/**.ts","apps/backend/src/**/*.ts"],
   "exclude": [
     "**/dist",
     "**/node_modules"

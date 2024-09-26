@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import DemoApi from '@/interfaces/demo/apis'
+import {EmojiApi} from '@/interfaces'
 import { Refresh } from '@vicons/ionicons5'
 const emojis = ref<Loose>([])
 const options = [
@@ -42,7 +42,7 @@ const handleDelete = async () => {
 }
 const refresh = async () => {
   // fetch('/api/emoji')
-  const [err, resp] = await DemoApi.getEmojis()
+  const [err, resp] = await EmojiApi.getEmojis()
   console.log(resp, 'resp')
   emojis.value = resp?.data
 }
@@ -52,7 +52,7 @@ const onSelect = async (key: string, item: Loose) => {
   } else if (key === 'copy') {
     // handleCopy()
   } else if (key === 'delete') {
-    await DemoApi.deleteEmoji(item.id)
+    await EmojiApi.deleteEmoji(item.id)
     refresh()
     // window.$dialog.error({
     //   title: '删除确认',

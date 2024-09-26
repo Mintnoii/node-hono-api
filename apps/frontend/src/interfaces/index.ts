@@ -1,2 +1,2 @@
-export * from './emoji'
-export * from './user'
+export * as UserApi from './user'
+export * as EmojiApi from './emoji'

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, reactive } from 'vue';
 import {FormItemRule} from 'naive-ui'
+import {UserApi} from '@/interfaces'
 // import { useRouterPush } from '@/hooks/common/router';
 // import { useFormRules, useNaiveForm } from '@/hooks/common/form';
 // import { useCaptcha } from '@/hooks/business/captcha';
@@ -40,6 +41,8 @@ const model: FormModel = reactive({
 //   };
 // });
 async function handleSubmit() {
+  console.log(model,'model')
+  UserApi.register(model)
   // await validate();
   // // request to register
   // window.$message?.success($t('page.login.common.validateSuccess'));
@@ -78,14 +81,14 @@ async function handleSubmit() {
         placeholder="再次输入密码"
       />
     </NFormItem>
-    <!-- <NSpace vertical :size="18" class="w-full">
+    <NSpace vertical :size="18" class="w-full">
       <NButton type="primary" size="large" round block @click="handleSubmit">
-        {{ $t('common.confirm') }}
+        注册
       </NButton>
-      <NButton size="large" round block @click="toggleLoginModule('pwd-login')">
+      <!-- <NButton size="large" round block @click="toggleLoginModule('pwd-login')">
         {{ $t('page.login.common.back') }}
-      </NButton>
-    </NSpace> -->
+      </NButton> -->
+    </NSpace>
   </NForm>
 </template>
 
