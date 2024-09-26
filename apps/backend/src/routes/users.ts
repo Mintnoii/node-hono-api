@@ -1,12 +1,15 @@
 import { Hono } from 'hono'
 import { PrismaClient } from '@prisma/client'
+import {UserValidator} from '@/schema'
 
 const user = new Hono()
 const prisma = new PrismaClient()
 
 // 查询
 user.get('/', async (c) => {
-   const emojis = await prisma.user.findMany();
+   const emojis = await prisma.user.findMany({orderBy: {
+    createdAt: 'desc' // 从新到旧排序
+  },});
    return c.json({
     status:200,
     msg:'success',
@@ -14,11 +17,12 @@ user.get('/', async (c) => {
    });
  });
 // 注册
- user.post('/register', async (c) => {
-   const data = await c.req.json();
-   console.log(data,'====');
-   const newUser = await prisma.user.create({ data });
-   return c.json(newUser, 201);
+ user.post('/register',UserValidator, async (c) => {
+  const validated = c.req.valid('json')
+  const data = await c.req.json();
+  //  console.log(validated,data,'====');
+  const newUser = await prisma.user.create({ data });
+  return c.json(newUser, 201);
  });
 // // 新增
 //  user.post('/', async (c) => {

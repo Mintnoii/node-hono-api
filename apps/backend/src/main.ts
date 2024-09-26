@@ -1,6 +1,6 @@
-import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
-import router from './routes'
+import { serve } from '@hono/node-server'
+import router from '@/routes'
 // import { HonoApp } from './types';
 // import { defineRoutes } from './routes'
 

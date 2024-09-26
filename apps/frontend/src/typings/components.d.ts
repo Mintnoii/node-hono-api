@@ -7,7 +7,8 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    CardModal: typeof import('./../components/card-modal/index.vue')['default']
+    AppProvider: typeof import('./../shared/ui/app-provider.vue')['default']
+    CardModal: typeof import('./../shared/ui/card-modal/index.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']
     NDropdown: typeof import('naive-ui')['NDropdown']
@@ -25,6 +26,6 @@ declare module 'vue' {
     NSpace: typeof import('naive-ui')['NSpace']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SvgIcon: typeof import('./../components/svg-icon/index.vue')['default']
+    SvgIcon: typeof import('./../shared/ui/svg-icon/index.vue')['default']
   }
 }

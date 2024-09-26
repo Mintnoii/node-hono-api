@@ -24,12 +24,12 @@ export default defineConfig(({ command, mode }) => {
       AutoImport({
         dts: './src/typings/auto-imports.d.ts',
         imports: ['vue', 'pinia', 'vue-router', '@vueuse/core'],
-        dirs: ['src/components/'],
+        dirs: ['src/shared/ui/'],
         resolvers: []
       }),
       Components({
         dts: './src/typings/components.d.ts',
-        dirs: ['src/components/'],
+        dirs: ['src/shared/ui/'],
         resolvers: [NaiveUiResolver()]
       }),
       createSvgIconsPlugin({

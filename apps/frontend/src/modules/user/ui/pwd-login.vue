@@ -66,13 +66,13 @@ defineOptions({
 interface ILoginBody {
   username: string
   password: string
-  email: string
+  email: string|undefined
 }
 
 const formState = reactive<ILoginBody>({
   username: '',
   password: '',
-  email: ''
+  email: undefined
 })
 const formRule = {
   username: [

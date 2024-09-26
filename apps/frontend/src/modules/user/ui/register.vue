@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed, reactive } from 'vue';
 import {FormItemRule} from 'naive-ui'
 import {UserApi} from '@/interfaces'
 // import { useRouterPush } from '@/hooks/common/router';
@@ -17,17 +16,19 @@ defineOptions({
 interface FormModel {
   // phone: string;
   // code: string;
-  email: string;
+  name: string;
+  email: string|undefined;
   password: string;
-  confirmPassword: string;
+  // confirmPassword: string;
 }
 
 const model: FormModel = reactive({
   // phone: '',
   // code: '',
-  email: '',
+  name: 'TestUser',
+  email: undefined,
   password: '',
-  confirmPassword: ''
+  // confirmPassword: ''
 });
 
 // const rules = computed<Record<keyof FormModel, FormItemRule[]>>(() => {
@@ -42,10 +43,12 @@ const model: FormModel = reactive({
 // });
 async function handleSubmit() {
   console.log(model,'model')
-  UserApi.register(model)
-  // await validate();
-  // // request to register
-  // window.$message?.success($t('page.login.common.validateSuccess'));
+  const [err, resp] = await UserApi.register(model)
+  if(err || !resp.ok){
+    window.$message?.error('注册失败');
+  }else{
+  window.$message?.success('注册成功');
+  }
 }
 </script>
 
@@ -62,6 +65,9 @@ async function handleSubmit() {
         </NButton>
       </div>
     </NFormItem> -->
+    <NFormItem path="name">
+      <NInput v-model:value="model.name" placeholder="请输入名称" />
+    </NFormItem>
     <NFormItem path="email">
       <NInput v-model:value="model.email" placeholder="请输入邮箱" />
     </NFormItem>
@@ -73,14 +79,14 @@ async function handleSubmit() {
         placeholder="输入密码"
       />
     </NFormItem>
-    <NFormItem path="confirmPassword">
+    <!-- <NFormItem path="confirmPassword">
       <NInput
         v-model:value="model.confirmPassword"
         type="password"
         show-password-on="click"
         placeholder="再次输入密码"
       />
-    </NFormItem>
+    </NFormItem> -->
     <NSpace vertical :size="18" class="w-full">
       <NButton type="primary" size="large" round block @click="handleSubmit">
         注册
