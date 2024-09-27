@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { UserInfo } from './index.d'
+import { UserInfo } from '../types'
 
 const defaultUserInfo: UserInfo = {
   id: '',

@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import {FormItemRule} from 'naive-ui'
-import {UserApi} from '@/interfaces'
+import { FormItemRule } from 'naive-ui'
+import { UserApi } from '@/entities/user'
+
 // import { useRouterPush } from '@/hooks/common/router';
 // import { useFormRules, useNaiveForm } from '@/hooks/common/form';
 // import { useCaptcha } from '@/hooks/business/captcha';
-
+const emits = defineEmits(['pwd-login'])
 defineOptions({
   name: 'Register'
-});
+})
 
 // const { toggleLoginModule } = useRouterPush();
 // const { formRef, validate } = useNaiveForm();
@@ -16,9 +17,9 @@ defineOptions({
 interface FormModel {
   // phone: string;
   // code: string;
-  name: string;
-  email: string|undefined;
-  password: string;
+  name: string
+  email: string | undefined
+  password: string
   // confirmPassword: string;
 }
 
@@ -27,9 +28,9 @@ const model: FormModel = reactive({
   // code: '',
   name: 'TestUser',
   email: undefined,
-  password: '',
+  password: ''
   // confirmPassword: ''
-});
+})
 
 // const rules = computed<Record<keyof FormModel, FormItemRule[]>>(() => {
 //   const { formRules, createConfirmPwdRule } = useFormRules();
@@ -42,12 +43,14 @@ const model: FormModel = reactive({
 //   };
 // });
 async function handleSubmit() {
-  console.log(model,'model')
+  console.log(model, 'model')
   const [err, resp] = await UserApi.register(model)
-  if(err || !resp.ok){
-    window.$message?.error('注册失败');
-  }else{
-  window.$message?.success('注册成功');
+  if (err || !resp.ok) {
+    window.$message?.error('注册失败')
+  } else {
+    window.$message?.success('注册成功')
+    await UserApi.login(model)
+    // await authStore.login(model.userName, model.password);
   }
 }
 </script>
@@ -72,12 +75,7 @@ async function handleSubmit() {
       <NInput v-model:value="model.email" placeholder="请输入邮箱" />
     </NFormItem>
     <NFormItem path="password">
-      <NInput
-        v-model:value="model.password"
-        type="password"
-        show-password-on="click"
-        placeholder="输入密码"
-      />
+      <NInput v-model:value="model.password" type="password" show-password-on="click" placeholder="输入密码" />
     </NFormItem>
     <!-- <NFormItem path="confirmPassword">
       <NInput
@@ -88,12 +86,8 @@ async function handleSubmit() {
       />
     </NFormItem> -->
     <NSpace vertical :size="18" class="w-full">
-      <NButton type="primary" size="large" round block @click="handleSubmit">
-        注册
-      </NButton>
-      <!-- <NButton size="large" round block @click="toggleLoginModule('pwd-login')">
-        {{ $t('page.login.common.back') }}
-      </NButton> -->
+      <NButton type="primary" size="large" round block @click="handleSubmit"> 注册 </NButton>
+      <NButton size="large" round block @click="emits('pwd-login')"> 返回 </NButton>
     </NSpace>
   </NForm>
 </template>

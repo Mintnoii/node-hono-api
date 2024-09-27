@@ -12,37 +12,46 @@
         <!-- <n-h1 class="text-center">
           <div class="text-20 font-600 flex items-baseline justify-center">欢迎登录薄荷管理系统</div>
         </n-h1> -->
-          <h3 class="text-18px text-primary font-medium">{{ activeModule.label }}</h3>
-         <Transition :name="'fade-slide'" mode="out-in" appear>
-              <component :is="activeModule.component" />
-            </Transition>
+        <h3 class="text-18px text-primary font-medium">{{ activeModule.label }}</h3>
+        <Transition :name="'fade-slide'" mode="out-in" appear>
+          <component
+            :is="activeModule.component"
+            @register="toggleLoginModule('register')"
+            @pwd-login="toggleLoginModule('pwd-login')"
+          />
+        </Transition>
       </n-card>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { FormInst, FormItemRule } from 'naive-ui'
-import { PwdLogin, Register} from '@/modules/user'
+import { PwdLogin, Register } from '@/features/user'
 defineOptions({
   name: 'Login'
 })
+const router = useRouter()
+const route = useRoute()
 
+watchEffect(() => {
+  console.log(route, router)
+})
 const moduleMap = {
   'pwd-login': { label: '登录', component: PwdLogin },
   // 'code-login': { label: loginModuleRecord['code-login'], component: CodeLogin },
-  register: { label: '注册', component: Register },
+  register: { label: '注册', component: Register }
   // 'reset-pwd': { label: loginModuleRecord['reset-pwd'], component: ResetPwd },
   // 'bind-wechat': { label: loginModuleRecord['bind-wechat'], component: BindWechat }
-};
-const activeModule = computed(() => moduleMap['register']);
-
-interface ILoginBody {
-  username: string
-  password: string
-  email: string
 }
+type TModule = keyof typeof moduleMap
+const curModule = computed(() => (route.query.module || 'pwd-login') as TModule)
+const activeModule = computed(() => moduleMap[curModule.value])
 
+async function toggleLoginModule(module: TModule) {
+  // const query = route.query as Record<string, string>;
+  // return routerPushByKey('login', { query, params: { module } });
+  router.push({ query: { ...route.query, module } })
+}
 </script>
 <route lang="yaml">
 meta:

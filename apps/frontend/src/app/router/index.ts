@@ -32,12 +32,12 @@ router.beforeResolve(async (to, from, next) => {
   const useInfoStr = localStorage.getItem('MINT_ADMIN_USERINFO')
   const userInfo = useInfoStr ? JSON.parse(useInfoStr)?.userInfo : {}
   const isExpired = isEmpty(userInfo.expire_time) || dayjs().isAfter(dayjs(userInfo.expire_time))
-  console.log('用户信息', userInfo, isExpired)
+  console.log('用户信息', userInfo, isExpired, to.path)
   if (to.path === '/login' || to.path === '/404') {
     next()
   } else {
     if (isExpired) {
-      next({ path: '/login' })
+      next({ path: '/login', query: { module: 'pwd-login' } })
     } else {
       next()
     }
