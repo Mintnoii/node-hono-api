@@ -71,6 +71,7 @@
     "@vueuse/core": "^10.1.2",
     "@vueuse/integrations": "^10.2.1",
     "axios": "^1.4.0",
+    "dayjs": "^1.11.13",
     "klona": "^2.0.5",
     "naive-ui": "^2.38.2",
     "nprogress": "^0.2.0",
