@@ -31,7 +31,8 @@ router.afterEach((to) => {
 router.beforeResolve(async (to, from, next) => {
   const useInfoStr = localStorage.getItem('MINT_ADMIN_USERINFO')
   const userInfo = useInfoStr ? JSON.parse(useInfoStr)?.userInfo : {}
-  const isExpired = isEmpty(userInfo.expire_time) || dayjs().isAfter(dayjs(userInfo.expire_time))
+  // const isExpired = isEmpty(userInfo.expire_time) || dayjs().isAfter(dayjs(userInfo.expire_time))
+  const isExpired = userInfo.accessToken === ''
   console.log('用户信息', userInfo, isExpired, to.path)
   if (to.path === '/login' || to.path === '/404') {
     next()

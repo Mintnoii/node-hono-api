@@ -49,7 +49,7 @@ user.post('/login', UserValidator, async (c) => {
   if (user && user.password === password) {
     // 登录成功，返回成功响应
     // 注意：实际应用中不应直接返回密码或敏感信息
-    return c.json({ message: '登录成功', userId: user.id }, 200)
+    return c.json({ message: '登录成功', id: user.id, token: '123456' }, 200)
   } else {
     // 用户名或密码错误
     return c.json({ message: '用户名或密码错误' }, 401)

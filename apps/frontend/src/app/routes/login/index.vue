@@ -33,9 +33,6 @@ defineOptions({
 const router = useRouter()
 const route = useRoute()
 
-watchEffect(() => {
-  console.log(route, router)
-})
 const moduleMap = {
   'pwd-login': { label: '登录', component: PwdLogin },
   // 'code-login': { label: loginModuleRecord['code-login'], component: CodeLogin },

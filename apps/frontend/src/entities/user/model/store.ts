@@ -11,8 +11,8 @@ const defaultUserInfo: UserInfo = {
 export const useUserStore = defineStore(
   'userStore',
   () => {
-    const userInfo = ref<UserInfo>(defaultUserInfo)
-    const setUserInfo = (payload: UserInfo) => {
+    const userInfo = ref<Loose>(defaultUserInfo)
+    const setUserInfo = (payload: Loose) => {
       const { id, token } = payload
       userInfo.value = { ...payload, accessToken: `token ${id} ${token}` }
     }
@@ -20,7 +20,7 @@ export const useUserStore = defineStore(
   },
   {
     persist: {
-      key: 'USERINFO'
+      key: 'MINT_ADMIN_USERINFO'
     }
   }
 )

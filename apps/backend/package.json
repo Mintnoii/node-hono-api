@@ -2,7 +2,7 @@
   "name": "backend",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/main.ts",
+    "dev": "pnpm run migrate && tsx watch src/main.ts",
     "migrate": "npx prisma migrate dev --name mint"
   },
   "dependencies": {

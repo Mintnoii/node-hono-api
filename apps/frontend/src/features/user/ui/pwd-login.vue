@@ -43,8 +43,9 @@ import { FormInst, FormItemRule } from 'naive-ui'
 // import { getUserInfo, useUser } from '@/entities/user'
 // import { isValidPhoneNumber } from '@/shared/lib'
 import useMintForm from '@/shared/hooks/use-mint-form'
-import { UserApi } from '@/entities/user'
+import { UserApi, useUser } from '@/entities/user'
 
+const { setUserInfo } = useUser()
 const { formRef, validate } = useMintForm()
 // const { userLogin, setUserInfo } = useUser()
 const router = useRouter()
@@ -86,28 +87,14 @@ const rules = {
 const handleSubmit = async (e: MouseEvent | KeyboardEvent) => {
   await validate()
   const [err, resp] = await UserApi.login(model)
+  //  // window.$message.error(err.msg || '账号或密码错误')
   if (err || !resp.ok) {
     window.$message?.error('登录失败')
   } else {
     window.$message?.success('登录成功')
+    setUserInfo(resp.data)
+    router.push({ path: '/solution/image-list' })
   }
-  // try {
-  //   await formRef.value?.validate()
-  //   const [err, resp] = await userLogin(formState)
-  //   if (err || !resp?.ok) {
-  //     // window.$message.error(err.msg || '账号或密码错误')
-  //   } else {
-  //     const { key, user_id = '' } = resp?.data || {}
-  //     setUserInfo({
-  //       ...resp?.data,
-  //       authorization: `token ${user_id} ${key}`
-  //     })
-  //     router.push({ path: '/application/manage' })
-  //     window.$message.success('登录成功')
-  //   }
-  // } catch (err) {
-  //   console.log(err)
-  // }
 }
 </script>
 <route lang="yaml">
